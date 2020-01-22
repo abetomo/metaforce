@@ -1,17 +1,15 @@
 # Metaforce
 
-[![Build Status](https://travis-ci.org/ejholmes/metaforce.png?branch=master)](https://travis-ci.org/ejholmes/metaforce) [![Code Climate](https://codeclimate.com/github/ejholmes/metaforce.png)](https://codeclimate.com/github/ejholmes/metaforce) [![Dependency Status](https://gemnasium.com/ejholmes/metaforce.png)](https://gemnasium.com/ejholmes/metaforce)
-
 Metaforce is a Ruby gem for interacting with the Salesforce [Metadata](http://www.salesforce.com/us/developer/docs/api_meta/index.htm)
 and [Services](http://www.salesforce.com/us/developer/docs/api/index.htm) APIs.
 
-[Documentation](http://rubydoc.info/gems/metaforce/frames)
+[Documentation](https://rubydoc.info/gems/metaforce-beta/frames)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'metaforce'
+    gem 'metaforce-beta'
 
 And then execute:
 
@@ -19,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install metaforce
+    $ gem install metaforce-beta
 
 ## Usage
 
@@ -31,9 +29,9 @@ To initialize a new client, you call `Metaforce.new` with a hash that specifies
 the `:username`, `:password`, and `:security_token`.
 
 ```ruby
-client = Metaforce.new :username => 'username',
-  :password => 'password',
-  :security_token => 'security token'
+client = Metaforce.new username: 'username',
+  password: 'password',
+  security_token: 'security token'
 ```
 
 Or you can specify the username, password and security token with environment
@@ -83,7 +81,7 @@ set of [RetrieveOptions](http://www.salesforce.com/us/developer/docs/api_meta/Co
 and returns a `Metaforce::Job::Retrieve`.
 
 ```ruby
-manifest = Metaforce::Manifest.new(:custom_object => ['Account'])
+manifest = Metaforce::Manifest.new(custom_object: ['Account'])
 client.retrieve_unpackaged(manifest)
   .extract_to('./tmp')
   .perform
