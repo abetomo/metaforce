@@ -49,6 +49,19 @@ export SALESFORCE_SECURITY_TOKEN="security token"
 client = Metaforce.new
 ```
 
+#### Use it with Restforce
+
+```ruby
+params = {...}
+# Please refer to the Restforce documentation for more information.
+# https://github.com/restforce/restforce
+restforce_client = Restforce.new(params)
+
+client = Metaforce.new({
+  restforce_client: restforce_client
+})
+```
+
 #### Asynchronous Tasks
 
 Some calls to the SOAP API's are performed asynchronously (such as deployments),

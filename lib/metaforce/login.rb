@@ -10,8 +10,8 @@ module Metaforce
     def login
       response = client.request(:login) do
         soap.body = {
-          :username => username,
-          :password => password
+          username: username,
+          password: password
         }
       end
       response.body[:login_response][:result]
