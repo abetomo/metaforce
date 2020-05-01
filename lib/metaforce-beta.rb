@@ -40,17 +40,11 @@ module Metaforce
         restforce_client.authenticate!
         options = restforce_client.options
         token = options[:oauth_token]
-        org_id = token[0, token.index('!')]
+        user_info = restforce_client.user_info
         return {
           session_id: token,
-          metadata_server_url: '%s/services/Soap/m/27.0/%s' % [
-            options[:instance_url],
-            org_id
-          ],
-          server_url: '%s/services/Soap/u/27.0/%s' % [
-            options[:instance_url],
-            org_id
-          ]
+          metadata_server_url: user_info[:urls][:metadata].sub('{version}', options[:api_version]),
+          server_url: user_info[:urls][:partner].sub('{version}', options[:api_version])
         }
       end
 
